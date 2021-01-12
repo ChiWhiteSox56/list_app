@@ -1,21 +1,23 @@
 import './App.css';
 import { getFlavors } from './data/flavors';
-import { Container, Image, Row } from "react-bootstrap"
+import { Card, Image, Row, Col } from "react-bootstrap"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const flavors = getFlavors()
 
 function ListItem({flavor}) {
   return (
-    <Container>
-    <Row >
-      <h2>{flavor.flavor}</h2>
-      <Image 
-       aria-label={flavor.flavor}
-       src={flavor.image}
-       alt={`An image of ${flavor.flavor} ice`}
-      />
-      </Row>
-    </Container>
+    <Card border="info">
+      <Card.Body>
+        <Card.Text><h2>{flavor.flavor}</h2></Card.Text>
+        <Card.Img
+          className="img"
+          aria-label={flavor.flavor}
+          src={flavor.image}
+          alt={`An image of ${flavor.flavor} ice`}
+          />
+        </Card.Body>
+    </Card>
   );
 };
 
