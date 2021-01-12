@@ -1,6 +1,6 @@
 import './App.css';
 import { flavors } from './data/flavors';
-import { Card } from "react-bootstrap"
+import { Container, Image, Row } from "react-bootstrap"
 import { useEffect } from 'react';
 
 function App() {
@@ -11,9 +11,15 @@ function App() {
 
   const renderListItem = (flavors, index) => {
       return (
-        <Card key={index} >
-          <Card.Title>{flavors.flavor}</Card.Title>
-        </Card>
+        <Container>
+        <Row key={index} >
+          <h2>{flavors.flavor}</h2>
+          <Image 
+           src={'./images/' + flavors.image + '.png'}
+           alt={flavors.image}
+          />
+          </Row>
+        </Container>
       );
   };
 
