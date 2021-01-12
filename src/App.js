@@ -1,30 +1,28 @@
 import './App.css';
-import { flavors } from './data/flavors';
+import { getFlavors } from './data/flavors';
 import { Container, Image, Row } from "react-bootstrap"
-import { useEffect } from 'react';
+
+const flavors = getFlavors()
+
+function ListItem({flavor}) {
+  return (
+    <Container>
+    <Row >
+      <h2>{flavor.flavor}</h2>
+      <Image 
+       aria-label={flavor.flavor}
+       src={flavor.image}
+       alt={`An image of ${flavor.flavor} ice`}
+      />
+      </Row>
+    </Container>
+  );
+};
 
 function App() {
 
-  useEffect(() => {
-    renderListItem(flavors)
-  }, []);
-
-  const renderListItem = (flavors, index) => {
-      return (
-        <Container>
-        <Row key={index} >
-          <h2>{flavors.flavor}</h2>
-          <Image 
-           src={'./images/' + flavors.image + '.png'}
-           alt={flavors.image}
-          />
-          </Row>
-        </Container>
-      );
-  };
-
   return (
-    <div classname="list">{flavors.map(renderListItem)}</div>
+    <div className="list">{flavors.map((item) => <ListItem flavor={item} key={item.flavor}/> )}</div>
   );
 }
 
