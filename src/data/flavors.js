@@ -1,4 +1,4 @@
-var flavors = [
+export const flavors = [
     {flavor: "Spumoni", image: "ice_spumoni"},
     {flavor: "Root Beer", image: "ice_root_beer"},
     {flavor: "Lemon Lime", image: "ice_lemon_lime"},
