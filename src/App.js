@@ -12,6 +12,7 @@ function ListItem({flavor}) {
         <Card.Text><h2>{flavor.flavor}</h2></Card.Text>
         <Card.Img
           className="img"
+          variant="right"
           aria-label={flavor.flavor}
           src={flavor.image}
           alt={`An image of ${flavor.flavor} ice`}
