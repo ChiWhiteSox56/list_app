@@ -37,12 +37,20 @@
   }
 }
 
-.img {
-  height: 100px;
-  width: auto;
+.myGrid {
+  padding: 1rem;
+  background-color: lightskyblue;
 }
 
-.card {
-  border-radius: 24px;
-  margin: 12px;
+.griddyImageColumn {
+  border-width: 10px;
+  align-content: space-between;
+  padding: 12px;
+  background-color: bisque;
+}
+
+.griddyTextColumn {
+  padding: 12px;
+  background-color: pink;
+  vertical-align: middle;
 }
