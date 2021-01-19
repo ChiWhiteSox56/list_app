@@ -1,48 +1,20 @@
 import './App.css';
 import { getFlavors } from './data/flavors';
-import styled from "styled-components"
-import { flexbox, space, layout, border } from "styled-system";
+import Button from './components/Button'
+import Card from './components/Card'
+import Container from './components/Container'
+import FlavorLabel from './components/FlavorLabel'
+import Header from './components/Header'
+import List from './components/List'
+import PageTitle from './components/PageTitle'
 
 const flavors = getFlavors()
 
-// flex-direction: row | row-reverse | column | column-reverse;
-
-const Flex = styled.div`
-  display: flex;
-  ${flexbox}
-  ${space}
-  ${layout}
-`;
-
-const Card = styled(Flex).attrs(() => ({
-  width: ["50%", "33.333%", "20%"],
-  flexDirection: "column-reverse",
-}))`
-  ${border}
-`;
-
-const Title = styled.h2`
-  color: black;
-
-  @media (min-width: 600px) {
-    color: blue;
-  }
-
-  @media (min-width: 700px) {
-    color: red;
-  }
-`;
-
-// flex-wrap: nowrap | wrap | wrap-reverse;
-
-const List = styled(Flex).attrs(() => ({
-  flexWrap: "wrap",
-}))``;
-
 function FlavorCard({flavor}) {
+
   return (
-    <Card alignItems="center" pb="20px" border="1px solid blue">
-        <Title>{flavor.flavor}</Title>
+    <Card alignItems="center" pb="20px" border="3px solid #0039e6" borderRadius="24px" bg="#fff">
+        <FlavorLabel>{flavor.flavor}</FlavorLabel>
         <img
           className="img"
           variant="right"
@@ -55,9 +27,19 @@ function FlavorCard({flavor}) {
 };
 
 function App() {
-
   return (
+    <>
+    <Header>
+      <PageTitle>THE LEMON ICE KING OF CORONA</PageTitle>
+        <div>
+          <Button>Flavor suggestion generator</Button>
+          <Button>Take me there!</Button>
+        </div>
+      </Header>
+      <Container>
     <List>{flavors.map((item) => <FlavorCard flavor={item} key={item.flavor}/> )}</List>
+    </Container>
+    </>
   );
 }
 
