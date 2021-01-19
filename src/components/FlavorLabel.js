@@ -1,6 +1,8 @@
 import styled from "styled-components"
+import Text from "./Text";
 
-const FlavorLabel = styled.h2`
+const Label = styled.h2`
+  padding-top: 20px;
   color: black;
 
   @media (min-width: 600px) {
@@ -12,4 +14,12 @@ const FlavorLabel = styled.h2`
   }
 `;
 
+const FlavorLabel = ({ children }) => (
+  <Label>
+    <Text>
+      {children}
+    </Text>
+  </Label>
+)
+ 
 export default FlavorLabel;

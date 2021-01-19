@@ -6,8 +6,9 @@ const Header = styled(Flex).attrs(() => ({
     display: "flex",
     px: "24px",
     justifyContent: "space-between",
-    }))`
-    background-color: #0039e6;
-  `;
+    alignItems: "center"
+}))`
+  background-color: #0039e6;
+`;
 
   export default Header;
