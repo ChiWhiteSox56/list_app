@@ -10,6 +10,10 @@ import PageTitle from './components/PageTitle'
 
 const flavors = getFlavors()
 
+const showTakeMeThereClicked = () => {
+  window.open("https://maps.google.com?q=+40.7434277064778+-73.85510556627074");
+};
+
 function FlavorCard({flavor}) {
 
   return (
@@ -33,7 +37,7 @@ function App() {
       <PageTitle>THE LEMON ICE KING OF CORONA</PageTitle>
         <div>
           <Button>Flavor suggestion generator</Button>
-          <Button>Take me there!</Button>
+          <Button onClick={() => showTakeMeThereClicked()}>Take me there!</Button>
         </div>
       </Header>
       <Container>
