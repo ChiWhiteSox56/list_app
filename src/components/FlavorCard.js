@@ -6,10 +6,9 @@ function FlavorCard({flavor, addToSelected, selected}) {
     // pass the flavour to the state
     const background = selected ? "#0039e6" : "#fff"
 
-
     return (
       <Card alignItems="center" pb="20px" border="3px solid #0039e6" borderRadius="24px" bg={background} onClick={() => addToSelected(flavor.flavor)}>
-          <FlavorLabel>{flavor.flavor}</FlavorLabel>
+          <FlavorLabel isSelected={selected}>{flavor.flavor}</FlavorLabel>
           <img
             variant="right"
             aria-label={flavor.flavor}
