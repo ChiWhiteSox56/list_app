@@ -3,15 +3,7 @@ import Text from "./Text";
 
 const Label = styled.h2`
   padding-top: 20px;
-  color: black;
-
-  @media (min-width: 600px) {
-    color: blue;
-  }
-
-  @media (min-width: 700px) {
-    color: red;
-  }
+    color: black;
 `;
 
 const FlavorLabel = ({ children }) => (

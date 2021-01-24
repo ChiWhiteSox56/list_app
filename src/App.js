@@ -1,5 +1,6 @@
 import { getFlavors } from './data/flavors';
 import addToSelect from './utils/AddToSelect';
+import _suggestRandomFlavor from './utils/SuggestRandomFlavor';
 import Button from './components/Button'
 import Container from './components/Container'
 import FlavorCard from './components/FlavorCard'
@@ -20,6 +21,10 @@ function App() {
     addToSelect({ selected, setSelected, itemToAdd });
   }
 
+  const suggestRandomFlavor = () => {
+    _suggestRandomFlavor({flavors, selected})
+  }
+
   return (
     <>
       <GlobalCSS />
@@ -33,13 +38,15 @@ function App() {
       <Container>
         <List>{flavors.map((item) => {
         
-          // const matchedItem = newItems.find((item) => {
-          //    return item.flavour === itemToAdd
-          // });
+          const matchedItem = selected.find((selectedItem) => {
+            console.log(selectedItem.flavor)
+            console.log(item.flavor)
+            return selectedItem.flavor === item.flavor
+          });
           // 
           // set a selected property here based on a find on the selected state
 
-          return <FlavorCard flavor={item} key={item.flavor} addToSelected={addToSelected} />
+          return <FlavorCard flavor={item} key={item.flavor} addToSelected={addToSelected} selected={matchedItem?.isActive} />
  }       )}</List>
       </Container>
     </>
