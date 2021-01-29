@@ -31,7 +31,7 @@ function App() {
       <Header>
         <PageTitle>THE LEMON ICE KING OF CORONA</PageTitle>
         <div>
-          <Button>Flavor suggestion generator</Button>
+          <Button onClick={() => suggestRandomFlavor()}>Flavor suggestion generator</Button>
           <Button as="a" href="https://maps.google.com?q=+40.7434277064778+-73.85510556627074">Take me there!</Button>
         </div>
       </Header>
@@ -39,8 +39,8 @@ function App() {
         <List>{flavors.map((item) => {
         
           const matchedItem = selected.find((selectedItem) => {
-            console.log(selectedItem.flavor)
-            console.log(item.flavor)
+            // console.log(selectedItem.flavor)
+            // console.log(item.flavor)
             return selectedItem.flavor === item.flavor
           });
           // 

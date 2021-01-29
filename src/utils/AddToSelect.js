@@ -7,11 +7,13 @@ const addToSelect = ({ selected, setSelected, itemToAdd }) => {
     if (matchedItem) {
       matchedItem.isActive = !matchedItem.isActive;
       setSelected(newItems);
+      // item is only marked false if it has been marked true
     } else {
       setSelected([...selected, {
         flavor: itemToAdd,
         isActive: true,
       }])
+      console.log(selected)
     }
   }
 
