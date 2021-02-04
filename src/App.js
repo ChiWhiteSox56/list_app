@@ -1,21 +1,24 @@
 import { getFlavors } from './data/flavors';
 import addToSelect from './utils/AddToSelect';
 import _suggestRandomFlavor from './utils/SuggestRandomFlavor';
-import Button from './components/Button'
-import Container from './components/Container'
-import FlavorCard from './components/FlavorCard'
-import Header from './components/Header'
-import List from './components/List'
-import PageTitle from './components/PageTitle'
-import { GlobalCSS } from './components/GlobalCSS'
-import React, { useState } from "react"
+import Button from './components/Button';
+import Container from './components/Container';
+import FlavorCard from './components/FlavorCard';
+import Header from './components/Header';
+import List from './components/List';
+import PageTitle from './components/PageTitle';
+import { GlobalCSS } from './components/GlobalCSS';
+import React, { useState } from 'react';
+import { Modal } from './components/Modal';
+import './styles.css';
 
 const flavors = getFlavors()
 
 function App() {
   // next time: move this to a custom hook
   // setup a useState hook, that will control what has been selected
-  const [selected, setSelected] = useState([]) // [] is default state
+  const [selected, setSelected] = useState([]) // [] is defaulti
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const addToSelected = (itemToAdd) => {
     addToSelect({ selected, setSelected, itemToAdd });
@@ -25,13 +28,21 @@ function App() {
     _suggestRandomFlavor({flavors, selected})
   }
 
+  const toggleModal = () => setIsModalOpen(!isModalOpen);
+
   return (
     <>
       <GlobalCSS />
       <Header>
         <PageTitle>THE LEMON ICE KING OF CORONA</PageTitle>
+        <Modal 
+          title={'My modal'}
+          isOpen={isModalOpen}
+          onClose={toggleModal}
+        >This is the children content right here.
+        </Modal>
         <div>
-          <Button>Flavor suggestion generator</Button>
+          <Button onClick={toggleModal}>Flavor suggestion generator</Button>
           <Button as="a" href="https://maps.google.com?q=+40.7434277064778+-73.85510556627074">Take me there!</Button>
         </div>
       </Header>
