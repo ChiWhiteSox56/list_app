@@ -28,9 +28,6 @@ export const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose, children }
                 <img src={closeIcon} alt={'close modal'} />
                 </button>
             </div>
-            <div className={'modal__title'}>
-                {title}
-            </div>
             <div className={'modal__content'}>
                 {children}
             </div>

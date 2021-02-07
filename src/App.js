@@ -10,6 +10,7 @@ import PageTitle from './components/PageTitle';
 import { GlobalCSS } from './components/GlobalCSS';
 import React, { useState } from 'react';
 import { Modal } from './components/Modal';
+import ModalTitle from './components/modal/ModalTitle';
 import './styles.css';
 
 const flavors = getFlavors()
@@ -24,9 +25,10 @@ function App() {
     addToSelect({ selected, setSelected, itemToAdd });
   }
 
-  const suggestRandomFlavor = () => {
-    _suggestRandomFlavor({flavors, selected})
-  }
+  const suggestRandomFlavor = () => flavors[Math.floor(Math.random() * 41)].flavor //{
+    // _suggestRandomFlavor({flavors, selected})
+    
+  // }
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
@@ -35,11 +37,11 @@ function App() {
       <GlobalCSS />
       <Header>
         <PageTitle>THE LEMON ICE KING OF CORONA</PageTitle>
-        <Modal 
-          title={'My modal'}
+        <Modal
           isOpen={isModalOpen}
           onClose={toggleModal}
-        >This is the children content right here.
+        >
+          <ModalTitle>{selected.length === 0 ? 'No selection' : suggestRandomFlavor()}</ModalTitle> 
         </Modal>
         <div>
           <Button onClick={toggleModal}>Flavor suggestion generator</Button>
