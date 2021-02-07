@@ -1,19 +1,18 @@
 const addToSelect = ({ selected, setSelected, itemToAdd }) => {
     const newItems = [...selected];
     const matchedItem = newItems.find((item) => {
-      return item.flavour === itemToAdd
+
+      return item.flavor === itemToAdd
     });
-  
+
     if (matchedItem) {
       matchedItem.isActive = !matchedItem.isActive;
       setSelected(newItems);
-      console.log(selected)
     } else {
       setSelected([...selected, {
-        flavour: itemToAdd,
+        flavor: itemToAdd,
         isActive: true,
       }])
-      console.log(selected)
     }
   }
 
