@@ -39,8 +39,8 @@ function App() {
         <List>{flavors.map((item) => {
         
           const matchedItem = selected.find((selectedItem) => {
-            console.log(selectedItem.flavor)
-            console.log(item.flavor)
+            // console.log(selectedItem.flavor)
+            // console.log(item.flavor)
             return selectedItem.flavor === item.flavor
           });
           // 
