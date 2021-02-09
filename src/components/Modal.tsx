@@ -2,9 +2,6 @@ import React from 'react';
 import styled from "styled-components"
 import Flex from './Flex'
 import closeIcon from '../images/close_btn.png'
-import FlavorCard from './FlavorCard'
-
-const DummyComponent = styled(FlavorCard)
 
 const ModalContainer = styled(Flex).attrs(() => ({
     flexDirection: "column",
@@ -16,6 +13,7 @@ const ModalContainer = styled(Flex).attrs(() => ({
     left: 0;
     top: 0;
     right: 0;
+    cursor: pointer;
 `;
 
 const ModalBody = styled.div`
@@ -25,11 +23,22 @@ const ModalBody = styled.div`
     position: relative;
     z-index: 1;
     background: white;
-    box-sizing: border-box,
-    border-radius: 10px,
-    background-color: #fff,
-    cursor: auto
+    box-sizing: border-box;
+    border-radius: 24px;
+    border: 6px solid #00269a;
+    background-color: #fff;
+    cursor: auto;
   `;
+
+const ModalOverlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+`
 
 interface ModalProps {
     title: string;
@@ -47,11 +56,9 @@ export const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose, children }
     }
     return isOpen ? (
     <ModalContainer>
-        <div 
-            className={'modal__overlay'}
+        <ModalOverlay
             ref={overlayRef} 
-            onClick={handleOverlayClick}>
-        </div>
+            onClick={handleOverlayClick} />
         <ModalBody>
             <div className={'modal__close-btn'}>
                 <button onClick={onClose}>

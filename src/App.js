@@ -11,7 +11,8 @@ import { GlobalCSS } from './components/GlobalCSS';
 import React, { useState } from 'react';
 import { Modal } from './components/Modal';
 import ModalTitle from './components/modal/ModalTitle';
-import './styles.css';
+import ModalImage from './components/modal/ModalImage';
+// import './styles.css';
 
 const flavors = getFlavors()
 
@@ -30,6 +31,8 @@ function App() {
     
   // }
 
+  const suggestRandomFlavorImage = () => flavors[Math.floor(Math.random() * 41)].image
+
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
   return (
@@ -41,6 +44,9 @@ function App() {
           isOpen={isModalOpen}
           onClose={toggleModal}
         >
+          <ModalImage>
+          <img src = {selected.length === suggestRandomFlavorImage() ? null : suggestRandomFlavorImage()} alt="temp alt"/>
+          </ModalImage>
           <ModalTitle>{selected.length === 0 ? 'No selection' : suggestRandomFlavor()}</ModalTitle> 
         </Modal>
         <div>
