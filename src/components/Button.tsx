@@ -1,7 +1,12 @@
-import styled from "styled-components"
+import { FC } from "react";
+import styled from "styled-components";
 import Text from "./Text";
 
-const Container = styled.button`
+interface ButtonProps {
+  onClick: () => void;
+}
+
+const Container: FC = styled.button`
   display: inline-block;
   font-size: 16px;
   margin: 10px;
@@ -14,14 +19,12 @@ const Container = styled.button`
   color: #00008b;
   cursor: pointer;
   text-decoration: none;
-`; 
+`;
 
-const Button = ({ children, ...props }) => (
+const Button: FC<ButtonProps> = ({ children, ...props }) => (
   <Container {...props}>
-    <Text>
-      {children}
-    </Text>
+    <Text>{children}</Text>
   </Container>
-)
+);
 
 export default Button;

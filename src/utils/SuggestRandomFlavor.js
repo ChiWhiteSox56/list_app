@@ -1,11 +1,10 @@
-function _suggestRandomFlavor({flavors, selected}) {
-    const unselectedFlavors = flavors.filter((flavor) => {
-        const isSelected = selected.find(selectedFlavor => 
-            selectedFlavor.isActive
-        )
-        return isSelected
-    })
-    console.log({unselectedFlavors})
+function _suggestRandomFlavor({ flavors, selected }) {
+  const unselectedFlavors = flavors.filter((flavor) => {
+    const isSelected = selected.find(
+      (selectedFlavor) => selectedFlavor.isActive
+    );
+    return isSelected;
+  });
 }
 
 export default _suggestRandomFlavor;
