@@ -2,6 +2,7 @@ import React from 'react';
 import styled from "styled-components"
 import Flex from './Flex'
 import closeIcon from '../images/close_btn.png'
+import Button from './Button'
 
 const ModalContainer = styled(Flex).attrs(() => ({
     flexDirection: "column",
@@ -40,6 +41,13 @@ const ModalOverlay = styled.div`
     cursor: pointer;
 `
 
+const ModalCloseButton = styled.button`
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+`
+
 interface ModalProps {
     title: string;
     isOpen: boolean;
@@ -60,13 +68,15 @@ export const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose, children }
             ref={overlayRef} 
             onClick={handleOverlayClick} />
         <ModalBody>
-            <div className={'modal__close-btn'}>
-                <button onClick={onClose}>
+            <ModalCloseButton onClick={onClose}>
                 <img src={closeIcon} alt={'close modal'} />
-                </button>
-            </div>
+            </ModalCloseButton>
             <div className={'modal__content'}>
                 {children}
+            </div>
+            <div>
+                <Button>Sounds good!</Button>
+                <Button>Nah, try again.</Button>
             </div>
         </ModalBody>
     </ModalContainer>
