@@ -1,5 +1,5 @@
 import { getFlavors } from "./data/flavors";
-import addToSelect from "./utils/AddToSelect";
+import updateSelectedItems from "./utils/UpdateSelectedItems";
 import _suggestRandomFlavor from "./utils/SuggestRandomFlavor";
 import Button from "./components/Button";
 import Container from "./components/Container";
@@ -23,21 +23,22 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [randomFlavor, setRandomFlavor] = useState(null);
 
-  const addToSelected = (itemToAdd) => {
-    addToSelect({ selected, setSelected, itemToAdd });
+  const updateSelected = (itemToAddOrDelete) => {
+    updateSelectedItems({ selected, setSelected, itemToAddOrDelete });
   };
 
   const toggleModal = () => {
-    setRandomFlavor(flavors[Math.floor(Math.random() * 41)])
+    console.log(selected);
+    setRandomFlavor(flavors[Math.floor(Math.random() * 41)]);
     setIsModalOpen(!isModalOpen);
-  }
+  };
 
   const filterFlavors = () => {
     // get all flavors (const flavors above)
     // get all flavors in selected
     // compare the two, and add only those not in selected to randomFlavor (will need to add a case for all selected)
     // need a way to remove items from selected ater they'v ebeen deselected
-  }
+  };
 
   return (
     <>
@@ -46,7 +47,7 @@ function App() {
         <PageTitle>THE LEMON ICE KING OF CORONA</PageTitle>
         <Modal isOpen={isModalOpen} onClose={toggleModal}>
           <ModalImage>
-            <img src={randomFlavor?.image} alt={randomFlavor?.flavor}/>
+            <img src={randomFlavor?.image} alt={randomFlavor?.flavor} />
           </ModalImage>
           <ModalTitle>{randomFlavor?.flavor}</ModalTitle>
         </Modal>
@@ -83,7 +84,7 @@ function App() {
               <FlavorCard
                 flavor={item}
                 key={item.flavor}
-                addToSelected={addToSelected}
+                updateSelected={updateSelected}
                 selected={matchedItem?.isActive}
               />
             );

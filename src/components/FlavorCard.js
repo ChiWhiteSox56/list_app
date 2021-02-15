@@ -1,7 +1,7 @@
 import Card from "./Card";
 import FlavorLabel from "./FlavorLabel";
 
-function FlavorCard({ flavor, addToSelected, selected }) {
+function FlavorCard({ flavor, updateSelected, selected }) {
   // onClick event on Card to call setSelected in the App state
   // pass the flavour to the state
   const background = selected ? "#0039e6" : "#fff";
@@ -13,7 +13,7 @@ function FlavorCard({ flavor, addToSelected, selected }) {
       border="3px solid #00008b"
       borderRadius="24px"
       bg={background}
-      onClick={() => addToSelected(flavor.flavor)}
+      onClick={() => updateSelected(flavor.flavor)}
     >
       <FlavorLabel isSelected={selected}>{flavor.flavor}</FlavorLabel>
       <img
