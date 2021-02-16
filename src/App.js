@@ -22,22 +22,32 @@ function App() {
   const [selected, setSelected] = useState([]); // [] is default
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [randomFlavor, setRandomFlavor] = useState(null);
+  const [unselectedFlavors, setUnselectedFlavors] = useState([]);
 
   const updateSelected = (itemToAddOrDelete) => {
     updateSelectedItems({ selected, setSelected, itemToAddOrDelete });
   };
 
   const toggleModal = () => {
-    console.log(selected);
+    // console.log(selected);
     setRandomFlavor(flavors[Math.floor(Math.random() * 41)]);
     setIsModalOpen(!isModalOpen);
+    getAllUnselectedFlavors();
+    // console.log(unselectedFlavors);
   };
 
-  const filterFlavors = () => {
-    // get all flavors (const flavors above)
-    // get all flavors in selected
-    // compare the two, and add only those not in selected to randomFlavor (will need to add a case for all selected)
-    // need a way to remove items from selected ater they'v ebeen deselected
+  const getAllUnselectedFlavors = () => {
+    const d = [];
+
+    flavors.map((item) => {
+      if (!selected.includes(item.flavor)) {
+        d.push(item);
+      }
+    });
+
+    setUnselectedFlavors(d);
+    console.log(flavors);
+    console.log(selected);
   };
 
   return (
