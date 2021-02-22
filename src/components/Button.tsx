@@ -1,6 +1,14 @@
+import { FC } from 'react'
 import styled from "styled-components";
 import { border, color } from "styled-system";
 import Text from "./Text";
+
+interface ButtonProps {
+  color: string,
+  border: string,
+  backgroundColor: string,
+  onClick: () => void,
+}
 
 const ButtonContainer = styled.button`
   display: inline-block;
@@ -15,11 +23,8 @@ const ButtonContainer = styled.button`
   ${border}
   ${color}
 `;
-// color: #00008b;
-// background-color: #fff;
-// border-color: #00008b;
 
-const Button = ({ children, ...props }) => (
+const Button: FC<ButtonProps> = ({ children, ...props }) => (
   <ButtonContainer {...props}>
     <Text>{children}</Text>
   </ButtonContainer>

@@ -53,6 +53,8 @@ interface ModalProps {
   title: string;
   isOpen: boolean;
   onClose: () => void;
+  unselectedFlavors: object[];
+  setRandomFlavor: (unselectedFlavors: object) => object;
 } // all other properties will be passed as children
 
 export const Modal: React.FC<ModalProps> = ({
@@ -60,6 +62,8 @@ export const Modal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
   children,
+  unselectedFlavors,
+  setRandomFlavor,
 }) => {
   const overlayRef = React.useRef(null);
 
@@ -69,6 +73,16 @@ export const Modal: React.FC<ModalProps> = ({
       onClose();
     }
   };
+
+  function tempPlaceholder() {
+    console.log("This is a placeholder.")
+  }
+
+  const generateNewRandomFlavor = () => {
+    let randomNum = Math.floor(Math.random() * unselectedFlavors.length)
+    setRandomFlavor(unselectedFlavors[randomNum]);
+  }
+
   return isOpen ? (
     <ModalContainer>
       <ModalOverlay ref={overlayRef} onClick={handleOverlayClick} />
@@ -83,6 +97,7 @@ export const Modal: React.FC<ModalProps> = ({
             color="#fff"
             border="3px solid #00008b"
             backgroundColor="#00008b"
+            onClick={tempPlaceholder}
           >
             Sounds good!
           </Button>
@@ -90,6 +105,7 @@ export const Modal: React.FC<ModalProps> = ({
             color="#fff"
             border="3px solid #00008b"
             backgroundColor="#00008b"
+            onClick={generateNewRandomFlavor}
           >
             Nah, try again.
           </Button>

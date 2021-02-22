@@ -5,7 +5,6 @@ function _suggestRandomFlavor({flavors, selected}) {
         )
         return isSelected
     })
-    console.log({unselectedFlavors})
 }
 
 export default _suggestRandomFlavor;

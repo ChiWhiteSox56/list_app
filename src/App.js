@@ -22,32 +22,35 @@ function App() {
   const [selected, setSelected] = useState([]); // [] is default
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [randomFlavor, setRandomFlavor] = useState(null);
-  const [unselectedFlavors, setUnselectedFlavors] = useState([]);
+  const [unselectedFlavors, setUnselectedFlavors] = useState(flavors);
 
   const updateSelected = (itemToAddOrDelete) => {
-    updateSelectedItems({ selected, setSelected, itemToAddOrDelete });
+    updateSelectedItems({ selected, setSelected, unselectedFlavors, setUnselectedFlavors, itemToAddOrDelete });
+    getAllUnselectedFlavors();
   };
 
   const toggleModal = () => {
-    // console.log(selected);
-    setRandomFlavor(flavors[Math.floor(Math.random() * 41)]);
+
+    let randomNum = Math.floor(Math.random() * unselectedFlavors.length)
+    setRandomFlavor(unselectedFlavors[randomNum]);
     setIsModalOpen(!isModalOpen);
-    getAllUnselectedFlavors();
-    // console.log(unselectedFlavors);
   };
 
   const getAllUnselectedFlavors = () => {
-    const d = [];
 
-    flavors.map((item) => {
-      if (!selected.includes(item.flavor)) {
-        d.push(item);
+    return flavors.forEach((item) => {
+
+      const itemIsInSelectedArray = selected.find((selectedItem) => {
+        console.log("selectedItem: " + {selectedItem})
+        //console.log("flavor: " + selectedItem.flavor + " => " + (selectedItem.flavor === item.flavor && selectedItem.isActive))
+        return selectedItem.flavor === item.flavor && selectedItem.isActive
+      })
+
+      console.log("itemIsInSelectedArray: " + itemIsInSelectedArray)
+      if (!Boolean(itemIsInSelectedArray)) {
+        setUnselectedFlavors([...unselectedFlavors, item])
       }
     });
-
-    setUnselectedFlavors(d);
-    console.log(flavors);
-    console.log(selected);
   };
 
   return (
@@ -55,7 +58,7 @@ function App() {
       <GlobalCSS />
       <Header>
         <PageTitle>THE LEMON ICE KING OF CORONA</PageTitle>
-        <Modal isOpen={isModalOpen} onClose={toggleModal}>
+        <Modal isOpen={isModalOpen} onClose={toggleModal} unselectedFlavors={unselectedFlavors} setRandomFlavor={setRandomFlavor}>
           <ModalImage>
             <img src={randomFlavor?.image} alt={randomFlavor?.flavor} />
           </ModalImage>
@@ -65,7 +68,7 @@ function App() {
           <Button
             color="#00008b"
             backgroundColor="#fff"
-            borderColor="#00008b"
+            border="1px solid #00008b"
             onClick={toggleModal}
           >
             Flavor suggestion generator
@@ -73,7 +76,7 @@ function App() {
           <Button
             color="#00008b"
             backgroundColor="#fff"
-            borderColor="#00008b"
+            border="1px solid #00008b"
             as="a"
             href="https://maps.google.com?q=+40.7434277064778+-73.85510556627074"
           >
